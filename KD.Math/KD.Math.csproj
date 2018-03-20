@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Krzysztof Dobrzyński</Authors>
     <Copyright>https://github.com/Sejoslaw/KD.Math/blob/master/LICENSE</Copyright>
     <PackageLicenseUrl>https://github.com/Sejoslaw/KD.Math/blob/master/LICENSE</PackageLicenseUrl>
