@@ -6,10 +6,9 @@ namespace KD.Math.Vectors
     /// <summary>
     /// General vector definition.
     /// </summary>
-    /// <typeparam name="T">  </typeparam>
-    public interface IVector<T> : 
+    /// <typeparam name="T"> Vector's elements type. </typeparam>
+    public interface IVector<T> :
         IEnumerable<T>, IComparable<IVector<T>>, IEquatable<IVector<T>>
-        where T : IComparable<T>
     {
         /// <summary>
         /// Returns value at specified index in current vector.
@@ -33,29 +32,29 @@ namespace KD.Math.Vectors
         /// <returns></returns>
         IVector<T> Absolute();
         /// <summary>
-        /// Returns new vector which is a sum of current vector and vector specified in argument.
+        /// Returns new vector which is a sum of current vector and vector specified in argument. Number of elements stays the same but each value is a value of "this[index] + vector[index]".
         /// </summary>
         /// <param name="vector"> Vector which will be added to current vector and create a sum of both. </param>
         /// <returns></returns>
-        IVector<T> Add(IVector<T> vector);
+        IVector<T> Add(IEnumerable<T> vector);
         /// <summary>
         /// Returns angle between current vector and vector specified in argument.
         /// </summary>
         /// <param name="vector"></param>
         /// <returns></returns>
-        double Angle(IVector<T> vector);
+        double Angle(IEnumerable<T> vector);
         /// <summary>
         /// Returns cross product of current vector and vector specified in argument.
         /// </summary>
         /// <param name="vector"></param>
         /// <returns></returns>
-        IVector<T> CrossProduct(IVector<T> vector);
+        IVector<T> CrossProduct(IEnumerable<T> vector);
         /// <summary>
         /// Returns dot product of current vector and vector specified in argument.
         /// </summary>
         /// <param name="vector"></param>
         /// <returns></returns>
-        IVector<T> DotProduct(IVector<T> vector);
+        IVector<T> DotProduct(IEnumerable<T> vector);
         /// <summary>
         /// Initializes current vector with value from specified enumerable.
         /// Each call of this method will remove all current data inside current vector and reinitialize it from specified.
@@ -68,7 +67,7 @@ namespace KD.Math.Vectors
         /// </summary>
         /// <param name="vector"></param>
         /// <returns></returns>
-        IVector<T> Multiply(IVector<T> vector);
+        IVector<T> Multiply(IEnumerable<T> vector);
         /// <summary>
         /// Returns normalized current vector.
         /// </summary>
@@ -79,7 +78,7 @@ namespace KD.Math.Vectors
         /// </summary>
         /// <param name="vector"> Vector which will be subtracted from current. </param>
         /// <returns></returns>
-        IVector<T> Subtract(IVector<T> vector);
+        IVector<T> Subtract(IEnumerable<T> vector);
         /// <summary>
         /// Converts current vector to unit vector.
         /// 
