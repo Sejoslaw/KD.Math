@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace KD.Math.Vectors
 {
@@ -54,18 +56,26 @@ namespace KD.Math.Vectors
             }
         }
 
-        public abstract IVector<T> Absolute();
+        public abstract T Absolute();
         public abstract IVector<T> Add(IEnumerable<T> vector);
-        public abstract double Angle(IEnumerable<T> vector);
+        public abstract double Angle(IVector<T> vector);
         public abstract int CompareTo(IVector<T> other);
         public abstract IVector<T> CrossProduct(IEnumerable<T> vector);
         public abstract IVector<T> DotProduct(IEnumerable<T> vector);
         public abstract bool Equals(IVector<T> other);
         public abstract IEnumerator<T> GetEnumerator();
-        public abstract IVector<T> Multiply(IEnumerable<T> vector);
+        public abstract T Multiply(IEnumerable<T> vector);
         public abstract IVector<T> Normalize();
         public abstract IVector<T> Subtract(IEnumerable<T> vector);
         public abstract IVector<T> ToUnit();
+
+        protected void CheckVectorElements(IEnumerable<T> vector)
+        {
+            if (this.Count != vector.Count())
+            {
+                throw new InvalidOperationException($"Specified vector contains different amount of elements than current vector.");
+            }
+        }
 
         IEnumerator IEnumerable.GetEnumerator()
         {

@@ -27,10 +27,10 @@ namespace KD.Math.Vectors
         T Length { get; }
 
         /// <summary>
-        /// Returns current vector but with all the values being absoluted.
+        /// Returns absolute value of current vector. (Also known as magnitude.)
         /// </summary>
         /// <returns></returns>
-        IVector<T> Absolute();
+        T Absolute();
         /// <summary>
         /// Returns new vector which is a sum of current vector and vector specified in argument. Number of elements stays the same but each value is a value of "this[index] + vector[index]".
         /// </summary>
@@ -42,7 +42,7 @@ namespace KD.Math.Vectors
         /// </summary>
         /// <param name="vector"></param>
         /// <returns></returns>
-        double Angle(IEnumerable<T> vector);
+        double Angle(IVector<T> vector);
         /// <summary>
         /// Returns cross product of current vector and vector specified in argument.
         /// </summary>
@@ -67,7 +67,7 @@ namespace KD.Math.Vectors
         /// </summary>
         /// <param name="vector"></param>
         /// <returns></returns>
-        IVector<T> Multiply(IEnumerable<T> vector);
+        T Multiply(IEnumerable<T> vector);
         /// <summary>
         /// Returns normalized current vector.
         /// </summary>
