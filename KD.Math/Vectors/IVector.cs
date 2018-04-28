@@ -25,16 +25,17 @@ namespace KD.Math.Vectors
         /// Returns the length of current vector.
         /// </summary>
         T Length { get; }
-
         /// <summary>
-        /// Returns absolute value of current vector. (Also known as magnitude.)
+        /// Describes basic math operations on specified generic data type.
+        /// This should be mainly specified if the generic type is not a basic value type like int, long, short, etc.
         /// </summary>
-        /// <returns></returns>
-        T Absolute();
+        IBasicMathOperator<T> BasicMathOperator { get; set; }
+
         /// <summary>
         /// Returns new vector which is a sum of current vector and vector specified in argument. Number of elements stays the same but each value is a value of "this[index] + vector[index]".
         /// </summary>
         /// <param name="vector"> Vector which will be added to current vector and create a sum of both. </param>
+        /// <param name="mathOperator"> If the specified generic T-type is not a basic value type (int, short, long, etc.), You must specify the adding method. </param>
         /// <returns></returns>
         IVector<T> Add(IEnumerable<T> vector);
         /// <summary>
@@ -54,7 +55,7 @@ namespace KD.Math.Vectors
         /// </summary>
         /// <param name="vector"></param>
         /// <returns></returns>
-        IVector<T> DotProduct(IEnumerable<T> vector);
+        T DotProduct(IEnumerable<T> vector);
         /// <summary>
         /// Initializes current vector with value from specified enumerable.
         /// Each call of this method will remove all current data inside current vector and reinitialize it from specified.
@@ -63,9 +64,15 @@ namespace KD.Math.Vectors
         /// <returns></returns>
         void Initialize(IEnumerable<T> data);
         /// <summary>
+        /// Returns magnitude value of current vector.
+        /// </summary>
+        /// <returns></returns>
+        T Magnitude();
+        /// <summary>
         /// Returns vector which is a product of multiplying current vector with specified in argument.
         /// </summary>
         /// <param name="vector"></param>
+        /// <param name="mathOperator"> If the specified generic T-type is not a basic value type (int, short, long, etc.), You must specify the multiplying method. </param>
         /// <returns></returns>
         T Multiply(IEnumerable<T> vector);
         /// <summary>
@@ -79,12 +86,5 @@ namespace KD.Math.Vectors
         /// <param name="vector"> Vector which will be subtracted from current. </param>
         /// <returns></returns>
         IVector<T> Subtract(IEnumerable<T> vector);
-        /// <summary>
-        /// Converts current vector to unit vector.
-        /// 
-        /// NOTE: Unit vector is a vector which length is equal '1' (one).
-        /// </summary>
-        /// <returns></returns>
-        IVector<T> ToUnit();
     }
 }

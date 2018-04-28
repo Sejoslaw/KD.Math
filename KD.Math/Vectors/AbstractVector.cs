@@ -24,6 +24,11 @@ namespace KD.Math.Vectors
             }
         }
 
+        /// <summary>
+        /// Describes wanted number of elements in current vector.
+        /// </summary>
+        protected virtual int WantedNumberOfElements { get; set; }
+
         public virtual T this[int index]
         {
             get
@@ -44,10 +49,17 @@ namespace KD.Math.Vectors
             }
         }
 
-        public abstract T Length { get; }
+        public virtual IBasicMathOperator<T> BasicMathOperator { get; set; }
+
+        public virtual T Length => this.Magnitude();
 
         public virtual void Initialize(IEnumerable<T> data)
         {
+            if (data.Count() != this.WantedNumberOfElements)
+            {
+                throw new ArgumentException($"Specified collection should contain only { this.WantedNumberOfElements } elements.");
+            }
+
             this.Internals.Clear();
 
             foreach (T element in data)
@@ -56,18 +68,17 @@ namespace KD.Math.Vectors
             }
         }
 
-        public abstract T Absolute();
         public abstract IVector<T> Add(IEnumerable<T> vector);
         public abstract double Angle(IVector<T> vector);
         public abstract int CompareTo(IVector<T> other);
         public abstract IVector<T> CrossProduct(IEnumerable<T> vector);
-        public abstract IVector<T> DotProduct(IEnumerable<T> vector);
+        public abstract T DotProduct(IEnumerable<T> vector);
         public abstract bool Equals(IVector<T> other);
         public abstract IEnumerator<T> GetEnumerator();
+        public abstract T Magnitude();
         public abstract T Multiply(IEnumerable<T> vector);
         public abstract IVector<T> Normalize();
         public abstract IVector<T> Subtract(IEnumerable<T> vector);
-        public abstract IVector<T> ToUnit();
 
         protected void CheckVectorElements(IEnumerable<T> vector)
         {
